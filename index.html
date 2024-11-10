@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            background-color: #5cb85c;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        .options {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Student Login</h2>
+        <form id="loginForm">
+            <!-- Email Field -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+
+            <div class="options">
+                <a href="register.html">Register</a> | 
+                <a href="forgot_password.html">Forgot Password?</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Define default admin credentials
+            const adminEmail = "admin@gmail.com";
+            const adminPassword = "admin@123";  // Replace with your desired password
+
+            // Check if the entered credentials are for the admin
+            if (email === adminEmail && password === adminPassword) {
+                // If admin login, store admin data and redirect
+                localStorage.setItem('user', JSON.stringify({ email: adminEmail, role: 'admin' }));
+                alert("Admin Login successful!");
+                window.location.href = "feedbackform.html";  // Redirect to feedback form page
+                return;
+            }
+
+            // Retrieve stored users data from localStorage (multiple users)
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if any user has the matching email and password
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                // Store the logged-in user's data in localStorage under 'user'
+                localStorage.setItem('user', JSON.stringify(user));
+
+                // If login is successful, navigate to the feedback form
+                alert("Login successful!");
+                window.location.href = "feedback.html";  // Redirect to feedback page
+            } else {
+                // If login fails, show an error message
+                alert("Invalid email or password. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

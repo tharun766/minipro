@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Submitted Feedback</title>
+    <style>
+        /* Simple styling for table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button.delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        button.delete-btn:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-display-container">
+        <h2>All Submitted Feedback</h2>
+
+        <table id="feedbackTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Teaching Quality</th>
+                    <th>Facilities</th>
+                    <th>Campus Cleanliness</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Feedback will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function verifyLogin() {
+            const storedUser  = JSON.parse(localStorage.getItem('user'));
+            if (!storedUser ) {
+                alert("You must log in first!");
+                window.location.href = "index.html";  
+            }
+        }
+
+        verifyLogin();
+
+        function deleteFeedback(index) {
+            let allFeedback = JSON.parse(localStorage.getItem('allFeedback'));
+            if (allFeedback) {
+                allFeedback.splice(index, 1);
+                localStorage.setItem('allFeedback', JSON.stringify(allFeedback));
+                location.reload();
+            }
+        }
+
+        const allFeedback = JSON.parse(localStorage.getItem('allFeedback'));
+
+        if (allFeedback && allFeedback.length > 0) {
+            const feedbackTableBody = document.querySelector('#feedbackTable tbody');
+            allFeedback.forEach((feedback, index) => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${feedback.name}</td>
+                    <td>${feedback.email}</td>
+                    <td>${feedback.feedback.question1}</td>
+                    <td>${feedback.feedback.question2}</td>
+                    <td>${feedback.feedback.question3}</td>
+                    <td><button class="delete-btn" onclick="deleteFeedback(${index})">Delete</button></td>
+                `;
+                feedbackTableBody.appendChild(newRow);
+            });
+        } else {
+            document.querySelector('.feedback-display-container').innerHTML = "<p>No feedback found. Please submit feedback first.</p>";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .feedback-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            background-color: #5cb85c;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h2>Submit Your Feedback</h2>
+        
+        <!-- Display the logged-in user's name and email -->
+        <div id="userInfo">
+            <p><strong>Name:</strong> <span id="userName"></span></p>
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        </div>
+
+        <form id="feedbackForm">
+            <label for="question1">1. How would you rate the teaching quality?</label>
+            <select id="question1" name="question1" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+            
+            <label for="question2">2. Are the facilities sufficient?</label>
+            <select id="question2" name="question2" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+            
+            <label for="question3">3. Rate your satisfaction with campus cleanliness:</label>
+            <select id="question3" name="question3" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <!-- Additional Questions -->
+            <label for="question4">4. How would you rate the quality of faculty interaction and support?</label>
+            <select id="question4" name="question4" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="question5">5. How would you rate the availability and accessibility of campus resources?</label>
+            <select id="question5" name="question5" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="question6">6. How satisfied are you with the extracurricular activities provided?</label>
+            <select id="question6" name="question6" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="question7">7. Rate your overall experience at the college:</label>
+            <select id="question7" name="question7" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="question8">8. How well does the curriculum prepare you for your future career?</label>
+            <select id="question8" name="question8" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="question9">9. How do you rate the college’s support services (e.g., counseling, career services)?</label>
+            <select id="question9" name="question9" required>
+                <option value="">Select</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="question10">10. How likely are you to recommend this college to others?</label>
+            <select id="question10" name="question10" required>
+                <option value="">Select</option>
+                <option value="1">1 - Very Unlikely</option>
+                <option value="2">2 - Unlikely</option>
+                <option value="3">3 - Neutral</option>
+                <option value="4">4 - Likely</option>
+                <option value="5">5 - Very Likely</option>
+            </select>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <script>
+        function verifyLogin() {
+            const storedUser  = JSON.parse(localStorage.getItem('user'));
+            if (!storedUser ) {
+                alert("You must log in first!");
+                window.location.href = "index.html";  
+                return;
+            }
+
+            document.getElementById("userName").textContent = storedUser .name;
+            document.getElementById("userEmail").textContent = storedUser .email;
+        }
+
+        verifyLogin();
+
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const storedUser  = JSON.parse(localStorage.getItem('user'));
+            if (!storedUser ) {
+                alert("You must log in first!");
+                window.location.href = "index.html"; 
+                return;
+            }
+
+            const feedback = {
+                question1: document.getElementById("question1").value,
+                question2: document.getElementById("question2").value,
+                question3: document.getElementById("question3").value,
+            };
+
+            const newFeedback = {
+                name: storedUser .name,
+                email: storedUser .email,
+                feedback: feedback
+            };
+
+            // Retrieve existing feedback or create a new array
+            let allFeedback = JSON.parse(localStorage.getItem('allFeedback')) || [];
+            allFeedback.push(newFeedback);
+            localStorage.setItem('allFeedback', JSON.stringify(allFeedback));
+
+            alert("Your feedback has been submitted successfully!");
+            window.location.href = "index.html";  
+        });
+    </script>
+</body>
+</html>
